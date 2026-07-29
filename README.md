@@ -1,6 +1,6 @@
 # PyTorch Lecture Notebooks
 
-PyTorch(파이토치) 핵심 개념을 Google Colab에서 실행합니다.
+PyTorch(파이토치) 핵심 개념을 Google Colab에서 실행하며 이해합니다.
 
 ## 학습 흐름
 
