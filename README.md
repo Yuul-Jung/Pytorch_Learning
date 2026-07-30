@@ -24,7 +24,7 @@ PyTorch(파이토치) 핵심 개념을 Google Colab에서 실행하며 이해합
 다음 구조로 파일을 배치합니다.
 
 ```text
-Pytorch_Learning/
+pytorch_Learning/
 ├── README.md
 ├── .gitignore
 └── PyTorch/
