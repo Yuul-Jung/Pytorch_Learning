@@ -37,7 +37,7 @@ pytorch_Learning/
 - 박성호 교수 — [NeoWizard GitHub PyTorch 2.x 실습 자료](https://github.com/neowizard2018/neowizard/tree/master/PyTorch)
 - Andrew Ng(앤드루 응) 교수 — [공식 홈페이지](https://www.andrewng.org/)
 - Andrew Ng(앤드루 응) 교수 강좌 - (https://www.coursera.org/specializations/machine-learning-introduction)
-- 박해선 — 한빛미디어 [《혼자 공부하는 머신러닝+딥러닝(개정판)》](https://hanbit.co.kr/store/books/look.php?p_code=B7077594897)
+- 박해선 — 한빛미디어 [《혼자 공부하는 머신러닝+딥러닝(개정판)》](https://github.com/rickiepark/hg-mldl2))
 - 사이토고키/개앞맵시 — 한빛미디어 [《밑바닥부터 시작하는 딥러닝》](https://github.com/youbeebee/deeplearning_from_scratch)
 
 
