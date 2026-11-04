@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>기술 검증보고서</title><link rel="stylesheet" href="assets/style.css"></head><body><header class="top"><div class="wrap"><a href="index.html">← 목차</a><span>적대적 검증</span></div></header><main class="main"><section class="paper"><h1>적대적 검증 및 개선 보고서</h1>
+<p>검증 기준일: 2026-11-05
+원본: 사용자 파일 라이브러리 <code>LLM_파인튜닝_12차시_통합본.zip</code></p>
+<h2>범위</h2>
+<ul>
+<li>12차시 Markdown·PDF·Python 문법 검사, 07~10차시 데이터 링크 및 중복 검사</li>
+<li>공식 문서와 SFTTrainer, PEFT, Transformers, Ollama의 핵심 API 사용 비교</li>
+<li>공개용 HTML 12개·목차·상대 링크·개인정보 스캔</li>
+</ul>
+<h2>수정 및 보완</h2>
+<ol>
+<li>07차시 전처리 결과 JSONL을 통합 패키지에 복원하고 08~10차시 학습/검증 데이터의 입력을 10/2로 일치시킴. 원래의 09차시 4/1 축소 샘플은 별도 보관.</li>
+<li>03·06차시의 채팅 템플릿 중복 토큰화 가능성을 제거.</li>
+<li>06·11·12차시의 <code>torch_dtype</code>를 <code>dtype</code>로 대체하여 현재 문서와 일치시킴.</li>
+<li>11차시 기본 어댑터 경로를 09차시 학습 결과 경로와 일치시킴.</li>
+<li>12차시 지연시간 측정 시 CUDA 시작 전 동기화 추가.</li>
+<li>10차시 QLoRA 훈련에서 TRL 공식 <code>quantization_config</code>/<code>peft_config</code> 경로로 구성 변경.</li>
+<li>11차시 변환·배포 단계별 검증 게이트를 명시하고 GGUF f16과 4비트 양자화를 엄격히 구분.</li>
+</ol>
+<h2>아직 검증하지 못한 항목</h2>
+<ul>
+<li>실물 NVIDIA GPU에서의 학습, QLoRA 양자화, 어댑터 저장·병합, GGUF 변환, Ollama 등록/실행</li>
+<li>모델 정확도 향상과 수업 현장의 60분 실습 완주 여부</li>
+<li>다양한 GPU 드라이버·CUDA·패키지 조합의 호환성</li>
+</ul>
+<h2>공식 출처 (2026-11-05 확인)</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/trl/sft_trainer">SFTTrainer</a></li>
+<li><a href="https://huggingface.co/docs/trl/peft_integration">PEFT 연동</a></li>
+<li><a href="https://huggingface.co/docs/transformers/main/chat_templating">템플릿</a></li>
+<li><a href="https://huggingface.co/docs/peft/main/developer_guides/checkpoint">PEFT 모델 저장</a></li>
+<li><a href="https://huggingface.co/docs/transformers/quantization/bitsandbytes">양자화</a></li>
+<li><a href="https://docs.ollama.com/import">Ollama GGUF</a></li>
+</ul>
+</section></main></body></html>

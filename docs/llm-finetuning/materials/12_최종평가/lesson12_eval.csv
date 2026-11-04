@@ -1,0 +1,6 @@
+question,reference,category
+"FPGA의 약어를 한국어로 설명해줘.","현장 프로그래머블 게이트 어레이",technical
+"LoRA에서 기본 모델의 가중치는 일반적으로 어떻게 처리하나요?","동결한다",technical
+"SFT의 한국어 의미는 무엇인가요?","지도 미세조정",technical
+"양자화의 주된 목적 하나를 말해줘.","메모리 사용량 절감",technical
+"모델 평가에서 데이터 누출은 왜 문제인가요?","평가 결과를 과대평가할 수 있기 때문이다",evaluation

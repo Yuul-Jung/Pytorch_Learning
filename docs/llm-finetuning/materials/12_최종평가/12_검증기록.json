@@ -1,0 +1,122 @@
+{
+  "checked_at": "2026-11-05",
+  "chapters": [
+    {
+      "chapter": 1,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "01_환경구축/01_개발환경_구축_심화.pdf",
+      "md_path": "01_환경구축/01_개발환경_구축_심화.md"
+    },
+    {
+      "chapter": 2,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "02_LLM구조_모델비교/02_LLM구조_모델비교_심화.pdf",
+      "md_path": "02_LLM구조_모델비교/02_LLM구조_모델비교_심화.md"
+    },
+    {
+      "chapter": 3,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "03_Ollama_HuggingFace/03_Ollama_HuggingFace_심화.pdf",
+      "md_path": "03_Ollama_HuggingFace/03_Ollama_HuggingFace_심화.md"
+    },
+    {
+      "chapter": 4,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "04_LoRA_PEFT/04_LoRA_PEFT_심화.pdf",
+      "md_path": "04_LoRA_PEFT/04_LoRA_PEFT_심화.md"
+    },
+    {
+      "chapter": 5,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "05_양자화_bitsandbytes/05_양자화_bitsandbytes_심화.pdf",
+      "md_path": "05_양자화_bitsandbytes/05_양자화_bitsandbytes_심화.md"
+    },
+    {
+      "chapter": 6,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "06_학습전후비교/06_학습전후비교_심화.pdf",
+      "md_path": "06_학습전후비교/06_학습전후비교_심화.md"
+    },
+    {
+      "chapter": 7,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "07_학습데이터전처리/07_학습데이터전처리_심화.pdf",
+      "md_path": "07_학습데이터전처리/07_학습데이터전처리_심화.md"
+    },
+    {
+      "chapter": 8,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "08_SFTTrainer/08_SFTTrainer_심화.pdf",
+      "md_path": "08_SFTTrainer/08_SFTTrainer_심화.md"
+    },
+    {
+      "chapter": 9,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "09_SFT_LoRA/09_SFT_LoRA_심화.pdf",
+      "md_path": "09_SFT_LoRA/09_SFT_LoRA_심화.md"
+    },
+    {
+      "chapter": 10,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "10_SFT_QLoRA/10_SFT_QLoRA_심화.pdf",
+      "md_path": "10_SFT_QLoRA/10_SFT_QLoRA_심화.md"
+    },
+    {
+      "chapter": 11,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "11_병합_GGUF_Ollama/11_병합_GGUF_Ollama_심화.pdf",
+      "md_path": "11_병합_GGUF_Ollama/11_병합_GGUF_Ollama_심화.md"
+    },
+    {
+      "chapter": 12,
+      "markdown_exists": true,
+      "pdf_exists": true,
+      "pages": 10,
+      "korean_extraction": true,
+      "pdf_path": "12_최종평가/12_최종평가_심화.pdf",
+      "md_path": "12_최종평가/12_최종평가_심화.md"
+    }
+  ],
+  "all_md_pdf_present": true,
+  "total_pdf_pages": 120,
+  "lesson12_tests": "3 unittest PASS; DRY RUN 5 questions PASS",
+  "gpu_model_execution": "NOT RUN",
+  "notes": [
+    "기존 01~11차시의 PDF 페이지 수와 한글 추출은 파일 기준 확인",
+    "기존 전체 차시의 GPU 코드 동작과 API 호환성은 통합 실행 검증하지 않음",
+    "각 차시의 모델 선택과 데이터는 교육용 선택이며 공식 필수 구성 아님"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "chapter": 11,
+  "date": "2026-11-05",
+  "pdf_pages": 10,
+  "python_syntax": "PASS",
+  "unit_tests": "3 PASS",
+  "real_merge": "NOT_RUN",
+  "gguf_conversion": "NOT_RUN",
+  "ollama_run": "NOT_RUN",
+  "sources": [
+    "https://huggingface.co/docs/peft/main/package_reference/lora",
+    "https://github.com/ggml-org/llama.cpp/blob/master/convert_hf_to_gguf.py",
+    "https://docs.ollama.com/modelfile"
+  ]
+}

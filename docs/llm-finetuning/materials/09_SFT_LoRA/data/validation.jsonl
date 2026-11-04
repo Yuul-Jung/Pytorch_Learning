@@ -1,0 +1,2 @@
+{"messages": [{"role": "user", "content": "토크나이저란?"}, {"role": "assistant", "content": "문장을 모델이 처리할 수 있는 토큰 ID 시퀀스로 변환하는 도구입니다."}]}
+{"messages": [{"role": "user", "content": "SFT란?"}, {"role": "assistant", "content": "정답 예시를 이용해 지시문에 대한 모델 응답을 지도 학습하는 방식입니다."}]}

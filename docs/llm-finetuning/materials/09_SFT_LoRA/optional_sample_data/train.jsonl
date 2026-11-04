@@ -1,0 +1,4 @@
+{"messages":[{"role":"user","content":"LoRA가 무엇인가요?"},{"role":"assistant","content":"LoRA는 기본 모델 가중치를 고정하고 작은 저랭크 행렬을 학습하는 방법입니다."}]}
+{"messages":[{"role":"user","content":"SFT의 목적은 무엇인가요?"},{"role":"assistant","content":"정답 예시를 이용하여 모델의 응답 방식을 조정하는 것입니다."}]}
+{"messages":[{"role":"user","content":"GPU 메모리가 부족할 때 무엇을 확인하나요?"},{"role":"assistant","content":"배치 크기와 시퀀스 길이, 정밀도, 사용 중인 메모리를 확인합니다."}]}
+{"messages":[{"role":"user","content":"어댑터 저장과 전체 모델 저장은 같은가요?"},{"role":"assistant","content":"아닙니다. 어댑터는 추가 학습 가중치 중심으로 저장합니다."}]}

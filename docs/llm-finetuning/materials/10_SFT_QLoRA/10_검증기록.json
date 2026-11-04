@@ -1,0 +1,9 @@
+{
+  "lesson": 10,
+  "pdf_pages": 10,
+  "syntax": "PASS",
+  "dry_run": "PASS train=4 validation=1 overlap=0",
+  "gpu_training": "NOT_RUN",
+  "api_documentation_checked": "2026-11-05",
+  "model_choice": "Qwen/Qwen2.5-0.5B-Instruct"
+}
