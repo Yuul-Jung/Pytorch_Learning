@@ -1,35 +1,102 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>기술 검증보고서</title><link rel="stylesheet" href="assets/style.css"></head><body><header class="top"><div class="wrap"><a href="index.html">← 목차</a><span>적대적 검증</span></div></header><main class="main"><section class="paper"><h1>적대적 검증 및 개선 보고서</h1>
-<p>검증 기준일: 2026-11-05
-원본: 사용자 파일 라이브러리 <code>LLM_파인튜닝_12차시_통합본.zip</code></p>
-<h2>범위</h2>
-<ul>
-<li>12차시 Markdown·PDF·Python 문법 검사, 07~10차시 데이터 링크 및 중복 검사</li>
-<li>공식 문서와 SFTTrainer, PEFT, Transformers, Ollama의 핵심 API 사용 비교</li>
-<li>공개용 HTML 12개·목차·상대 링크·개인정보 스캔</li>
-</ul>
-<h2>수정 및 보완</h2>
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>기술 검증보고서</title><link href="assets/style.css" rel="stylesheet"/></head><body><header class="top"><div class="wrap"><a href="index.html">← 목차</a><span>적대적 검증</span></div></header><main class="main"><section class="paper"><h1>LLM 파인튜닝 12차시 적대적 검증 및 개선 보고서</h1>
+<p>검증·개선 기준일: <strong>2026-11-05</strong><br/>
+원본: 사용자가 제공한 12차시 과정 안내서와 기존 <code>LLM_파인튜닝_12차시_통합본.zip</code><br/>
+게시 저장소: <code>Yuul-Jung/Pytorch_Learning</code> / <code>docs/llm-finetuning/</code><br/>
+최종 소스 커밋: <a href="https://github.com/Yuul-Jung/Pytorch_Learning/commit/c192ec55eec840a5951f4d5d275a59b7d6df110c"><code>c192ec55eec840a5951f4d5d275a59b7d6df110c</code></a></p>
+<h2>검증 범위와 결과</h2>
+<table>
+<thead>
+<tr>
+<th>검사</th>
+<th>결과</th>
+<th>제한</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12차시 Markdown·PDF 존재</td>
+<td>PASS</td>
+<td>전체 차시 파일 확인</td>
+</tr>
+<tr>
+<td>PDF 분량·한글</td>
+<td>PASS</td>
+<td><strong>총 127페이지, 차시별 10~11페이지</strong>, 모든 PDF 페이지에서 한글 텍스트 확인</td>
+</tr>
+<tr>
+<td>Python 소스 정적 구문</td>
+<td>PASS</td>
+<td>15개 Python 파일 AST 구문 검사, 실제 라이브러리·GPU 실행과 다름</td>
+</tr>
+<tr>
+<td>학습/평가 데이터</td>
+<td>PASS</td>
+<td>07차시 원본 데이터 → 전처리 결과 10/2건, 질문 기준 train/eval 중복 0</td>
+</tr>
+<tr>
+<td>비GPU 실행 검사</td>
+<td>PASS</td>
+<td>07 전처리 실실행, 08~10 dry-run, 11·12 단위 테스트</td>
+</tr>
+<tr>
+<td>공개 사이트 상대링크</td>
+<td>PASS</td>
+<td>목차·12차시·검증 보고·내부 코드/자료 링크 연결 점검</td>
+</tr>
+<tr>
+<td>공개 자료 민감정보 검사</td>
+<td>PASS</td>
+<td>토큰·이메일·절대 개인 경로 패턴 미발견 (기계 검사 범위)</td>
+</tr>
+<tr>
+<td>실제 GPU 학습/성능 향상</td>
+<td><strong>미검증</strong></td>
+<td>CUDA/NVIDIA GPU 기반 학습을 수행하지 않음</td>
+</tr>
+<tr>
+<td>GGUF·Ollama 실물 실행</td>
+<td><strong>미검증</strong></td>
+<td>병합·변환·등록·추론 end-to-end 수행하지 않음</td>
+</tr>
+<tr>
+<td>GitHub 저장소 main 반영</td>
+<td>PASS</td>
+<td>GitHub API에서 최종 커밋과 게시 파일 확인</td>
+</tr>
+<tr>
+<td>GitHub Pages 실서비스 HTTP</td>
+<td><strong>미확인</strong></td>
+<td>Pages 배포 응답을 직접 확인하지 못함. GitHub Pages 설정에서 <code>main /docs</code> 확인 필요</td>
+</tr>
+</tbody>
+</table>
+<h2>결함 및 조치</h2>
 <ol>
-<li>07차시 전처리 결과 JSONL을 통합 패키지에 복원하고 08~10차시 학습/검증 데이터의 입력을 10/2로 일치시킴. 원래의 09차시 4/1 축소 샘플은 별도 보관.</li>
-<li>03·06차시의 채팅 템플릿 중복 토큰화 가능성을 제거.</li>
-<li>06·11·12차시의 <code>torch_dtype</code>를 <code>dtype</code>로 대체하여 현재 문서와 일치시킴.</li>
-<li>11차시 기본 어댑터 경로를 09차시 학습 결과 경로와 일치시킴.</li>
-<li>12차시 지연시간 측정 시 CUDA 시작 전 동기화 추가.</li>
-<li>10차시 QLoRA 훈련에서 TRL 공식 <code>quantization_config</code>/<code>peft_config</code> 경로로 구성 변경.</li>
-<li>11차시 변환·배포 단계별 검증 게이트를 명시하고 GGUF f16과 4비트 양자화를 엄격히 구분.</li>
+<li><strong>P1 — 07차시 전처리 원본과 출력물 누락:</strong> <code>lesson07_raw.jsonl</code> 및 <code>processed/train.jsonl</code>, <code>processed/validation.jsonl</code> 복원. 08~10차시 학습/검증 데이터 연결을 10/2건으로 통일. 기존 09차시 축소 샘플 4/1건은 별도 예제로 유지.</li>
+<li><strong>P1 — 01차시 실습 코드 파일 누락:</strong> 안내서에서 실행하도록 명시된 <code>check_env.py</code>, <code>report_versions.sh</code>를 복원. 명령어·출력 메모리 단위를 GiB로 수정하고 PDF/HTML 재동기화.</li>
+<li><strong>P1 — 실습 코드 접근성:</strong> 12개 HTML 페이지에 동봉된 <code>.py</code>/<code>.sh</code> 실습 코드 링크를 추가하고 GitHub 파일 존재 검증.</li>
+<li><strong>P1 — 채팅 템플릿 특수 토큰 중복 가능성:</strong> 03·06차시에서 <code>apply_chat_template(tokenize=True)</code>를 직접 사용하도록 정리.</li>
+<li><strong>P1 — 학습 경로 및 라이브러리 API 불일치:</strong> 11차시 어댑터 기본 경로를 09차시 저장 경로에 맞추고, 10차시 TRL의 <code>quantization_config</code>/<code>peft_config</code>를 공식 API와 대조해 수정.</li>
+<li><strong>P2 — 버전 및 평가 정확성:</strong> <code>dtype</code> 사용 기준 정리, 12차시 GPU 시간 측정 이전 CUDA 동기화 추가.</li>
+<li><strong>P2 — GGUF 배포 정확성:</strong> 병합, F16 GGUF 변환, GGUF 양자화, Ollama 등록을 별도 검증 게이트로 분리해 설명.</li>
+<li><strong>P2 — 문서 내용 밀도:</strong> 11차시 설명과 실습단계를 확장하고, 개선 Markdown 기반으로 12개 PDF를 전부 재생성.</li>
 </ol>
-<h2>아직 검증하지 못한 항목</h2>
+<h2>교육 자료 사용 시 주의</h2>
 <ul>
-<li>실물 NVIDIA GPU에서의 학습, QLoRA 양자화, 어댑터 저장·병합, GGUF 변환, Ollama 등록/실행</li>
-<li>모델 정확도 향상과 수업 현장의 60분 실습 완주 여부</li>
-<li>다양한 GPU 드라이버·CUDA·패키지 조합의 호환성</li>
+<li>60분 교육 편성은 <strong>교육과정 시간표 기준</strong>이며, 실제 PC/GPU 구성과 다운로드 속도에 따라 끝나는 시간은 달라질 수 있습니다.</li>
+<li><code>Qwen/Qwen2.5-0.5B-Instruct</code>는 교안 제작상 선택한 예제 모델입니다.</li>
+<li>dry-run과 구문 검사는 모델 가중치 다운로드, 4비트 학습, CUDA 메모리 사용량, 품질 향상 검증의 증거가 아닙니다.</li>
+<li>교육에 투입하기 전 CUDA 드라이버/PyTorch/Transformers/TRL/PEFT/bitsandbytes 버전을 기록하고 <strong>09~12차시 관통 실험</strong>을 실제 GPU에서 별도로 수행해야 합니다.</li>
+<li>GitHub Pages 배포 후 공개 URL에서 메인 목차, 차시 이동, 코드, PDF를 브라우저로 확인해야 합니다.</li>
 </ul>
-<h2>공식 출처 (2026-11-05 확인)</h2>
+<h2>공식 참고문서 (2026-11-05 대조)</h2>
 <ul>
-<li><a href="https://huggingface.co/docs/trl/sft_trainer">SFTTrainer</a></li>
-<li><a href="https://huggingface.co/docs/trl/peft_integration">PEFT 연동</a></li>
-<li><a href="https://huggingface.co/docs/transformers/main/chat_templating">템플릿</a></li>
-<li><a href="https://huggingface.co/docs/peft/main/developer_guides/checkpoint">PEFT 모델 저장</a></li>
-<li><a href="https://huggingface.co/docs/transformers/quantization/bitsandbytes">양자화</a></li>
-<li><a href="https://docs.ollama.com/import">Ollama GGUF</a></li>
+<li>TRL SFTTrainer: https://huggingface.co/docs/trl/sft_trainer</li>
+<li>TRL PEFT: https://huggingface.co/docs/trl/peft_integration</li>
+<li>PEFT LoRA: https://huggingface.co/docs/peft/main/package_reference/lora</li>
+<li>Transformers 채팅 템플릿: https://huggingface.co/docs/transformers/main/chat_templating</li>
+<li>Transformers bitsandbytes 양자화: https://huggingface.co/docs/transformers/quantization/bitsandbytes</li>
+<li>Ollama 모델 가져오기: https://docs.ollama.com/import</li>
 </ul>
 </section></main></body></html>
