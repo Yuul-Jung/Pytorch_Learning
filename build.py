@@ -18,6 +18,7 @@ import html
 import json
 import os
 import re
+import urllib.parse
 from pathlib import Path
 
 import sys
@@ -105,6 +106,35 @@ def strip_number(title):
     return re.sub(r'^(?:\d+(?:\.\d+)*[.)]?(?:\s*[|·:—-])?|\[\d+\]|제?\d+절)\s+', '', title).strip() or title
 
 
+def slug_variants(title):
+    """원고 안 링크가 가리키던 옛 제목 앵커(GitHub·pandoc 방식) 후보."""
+    plain = html.unescape(re.sub(r'<[^>]+>', '', title)).strip()
+    out = set()
+    for s in (plain, strip_number(plain)):
+        g = re.sub(r'[^\w\- ]', '', s.lower()).replace(' ', '-')
+        out |= {g, g.strip('-'), re.sub(r'^[\d\-]+', '', g)}
+    return {x for x in out if x}
+
+
+def nav_only(body_html):
+    """이전/다음·목차 링크만 있는 절(표준 탐색과 중복)인지."""
+    if '<a ' not in body_html:
+        return False
+    rest = re.sub(r'<a\b.*?</a>', '', body_html, flags=re.S)
+    rest = re.sub(r'<[^>]+>|[\s·|/\-—]', '', rest)
+    return len(rest) < 6
+
+
+def drop_local_toc(fragment):
+    """항목이 모두 같은 쪽 앵커 링크뿐인 목록(원고 자체 목차)은 좌측 탐색과 중복이므로 뺀다."""
+    def repl(m):
+        items = re.findall(r'<li>(.*?)</li>', m.group(0), re.S)
+        if len(items) >= 3 and all(re.fullmatch(r'\s*<a href="#[^"]+">[^<]*</a>\s*', i) for i in items):
+            return ''
+        return m.group(0)
+    return re.sub(r'<(ul|ol)>.*?</\1>', repl, fragment, flags=re.S)
+
+
 def split_sections(text, ch):
     """원고를 (절 제목, HTML) 목록으로 나눈다. 첫 '##' 앞 내용은 00 개요 절이 된다."""
     is_md = ch['source'].endswith('.md')
@@ -132,14 +162,25 @@ def split_sections(text, ch):
         return fix_links(body, src_dir)
     secs = []
     intro_title = ch.get('intro_title', '개요')
-    intro_html = render(intro) if intro else ''
+    intro_html = drop_local_toc(render(intro)) if intro else ''
     if not intro_html.strip():
         intro_html = f'<p>{escape(ch["subtitle"])}</p>'
     secs.append((intro_title, intro_html))
     for t, b in raw:
         title = strip_number(re.sub(r'<[^>]+>', '', MARKDOWN(t)).strip() if is_md else t)
-        secs.append((html.unescape(title), render(b)))
-    return secs
+        body = render(b)
+        if nav_only(body):
+            continue
+        secs.append((html.unescape(title), body, slug_variants(t)))
+    # 원고 안 옛 제목 앵커(#01--제목 등) → 새 절 번호(#sNN)
+    alias = {}
+    for i, s in enumerate(secs):
+        for v in (s[2] if len(s) > 2 else ()):
+            alias.setdefault(v, f's{i:02d}')
+    def re_anchor(m):
+        key = urllib.parse.unquote(m.group(1)).lower()
+        return f'href="#{alias[key]}"' if key in alias else m.group(0)
+    return [(s[0], re.sub(r'href="#([^"]+)"', re_anchor, s[1])) for s in secs]
 
 
 def page(title, kicker, desc, chips, body, chapter_id=''):

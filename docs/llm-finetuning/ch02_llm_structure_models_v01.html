@@ -676,6 +676,19 @@ pre code {
   margin: 0;
 }
 
+/* 6-1. 원래 교재의 실행 출력 상자(pre)·넓은 표 — 화면이 좁으면 상자 안에서 가로 스크롤 */
+.sec-body pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+@media (max-width: 860px) {
+  .sec-body table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
 /* 7. 코드 박스 — 줄바꿈 없이 상자 안 가로 스크롤 (STANDARD 10.3) */
 .sec-body .codeblock pre {
   white-space: pre;

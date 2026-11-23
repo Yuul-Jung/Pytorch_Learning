@@ -22,4 +22,5 @@
 - 과정이 둘이다: CNN 코드 해설서(`course.json` → `docs/`)와 LLM 파인튜닝 교안(`course_llm.json` → `docs/llm-finetuning/`). 각각 `python build.py`, `python build.py course_llm.json`으로 만든다.
 - 장 원고는 `content/cnn/`, `content/llm/`의 HTML 조각이다. LLM 교안 고유 스타일은 `assets/edu/llm-finetuning.css`(원래 style.css를 본문 범위로 한정한 사본)이다.
 - CNN 해설서의 코드·출력은 원본 Notebook의 실제 실행 결과이므로 바꾸지 않는다.
+- Notebook 출력에 들어 있던 개인 로컬 경로(`/home/<사용자>/`)는 개인정보 보호를 위해 `~/`로 바꿔 실었다. 다른 출력 값은 바꾸지 않는다.
 - 커밋은 하나의 논리적 목적만 담고, 메시지는 한글로 변경 목적을 쓴다.

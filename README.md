@@ -1,6 +1,6 @@
 # PyTorch Lecture Notebooks
 
-**웹 교재:** [PyTorch 딥러닝 코드 해설서](https://yuul-jung.github.io/Pytorch_Learning/) · [LLM 파인튜닝 심화교안](https://yuul-jung.github.io/Pytorch_Learning/llm-finetuning/) (원본 파일: `docs/index.html`, `docs/llm-finetuning/index.html`)
+**웹 교재:** [PyTorch 딥러닝 코드 해설서](docs/index.html) · [LLM 파인튜닝 심화교안](docs/llm-finetuning/index.html)
 
 PyTorch(파이토치) 핵심 개념을 Google Colab에서 실행하며 이해합니다.
 아래 "출처 및 참고자료" 등을 활용하여 인공지능 이해를 높이고,
