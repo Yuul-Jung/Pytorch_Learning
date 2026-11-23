@@ -1,0 +1,18 @@
+/* LLM 파인튜닝 교안 원래 스타일(docs/llm-finetuning/assets/style.css)을 본문(.sec-body) 범위로 한정한 사본 */
+.sec-body {--bg:#f5f7fb;--code:#f2f5fa;--good:#146b4a}
+.sec-body * {box-sizing:border-box}
+.sec-body .pill {border:1px solid #8eaaca;border-radius:99px;padding:4px 11px;font-size:.8rem;display:inline-block}
+.sec-body :not(pre)>code {background:#edf3fa;padding:.1em .3em;border-radius:3px}
+.sec-body .btns {display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.sec-body .btn {border:1px solid var(--line);border-radius:7px;padding:8px 12px;text-decoration:none;font-weight:700}
+.sec-body .btn.primary {background:var(--accent);color:#fff}
+.sec-body .micro {font-size:.85rem;color:var(--ink-3)}
+.sec-body .notice {margin:20px 0;padding:15px 18px;border:1px solid #c4d9ea;background:#f1f7fc;border-radius:8px}
+.sec-body .diagram {width:100%;max-width:800px;height:auto;display:block;margin:23px auto}
+.sec-body .pagebreak {border-top:2px dotted #d0daea;margin:2rem 0}
+@media (max-width:680px) {.sec-body .paper {padding:22px 18px}
+.sec-body .paper h1 {font-size:1.5rem}}
+@media print {.sec-body .btns {display:none!important}
+.sec-body .paper {box-shadow:none;border:0;padding:0}
+.sec-body .main {margin:0;padding:0}
+.sec-body .pagebreak {break-before:page;border:0;margin:0}}

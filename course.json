@@ -1,0 +1,69 @@
+{
+ "site_title": "PyTorch 딥러닝 코드 해설서",
+ "site_subtitle": "",
+ "course_code": "PYTORCH CODE GUIDE",
+ "version": "v01",
+ "out": "docs",
+ "site_description": "Notebook의 원본 코드와 실제 실행 결과를 기준으로 Tensor Shape, 모델 구조, Loss·Gradient·파라미터 갱신, 평가와 오답 분석이 내부에서 어떻게 연결되는지 단계별로 풀이하는 코드 해설서입니다.",
+ "index_chips": [
+  "CNN 2개 장",
+  "Fashion-MNIST",
+  "실제 Notebook 출력"
+ ],
+ "overview_cards": [
+  {
+   "label": "Test Accuracy",
+   "value": "88.35%",
+   "note": "2단 CNN · 9,098 파라미터"
+  }
+ ],
+ "notes": [
+  "코드와 출력은 원본 Notebook의 실제 실행 결과를 그대로 실었습니다."
+ ],
+ "extra_links": [
+  {
+   "text": "LLM 파인튜닝 심화교안 (12개 장)",
+   "href": "llm-finetuning/index.html"
+  },
+  {
+   "text": "원본 Notebook 폴더 (GitHub)",
+   "href": "https://github.com/Yuul-Jung/Pytorch_Learning/tree/main/pytorch"
+  }
+ ],
+ "chapters": [
+  {
+   "id": "ch01",
+   "number": 1,
+   "title": "Fashion-MNIST CNN 학습과 평가",
+   "nav_title": "CNN 학습과 평가",
+   "subtitle": "데이터 준비 → 2단 CNN 학습 → 최고 모델 선택 → 테스트·혼동행렬·오답 분석 → Checkpoint 저장",
+   "slug": "ch01_fashion_mnist_cnn_training_evaluation",
+   "version": "v01",
+   "source": "content/cnn/ch01.html",
+   "base": "docs",
+   "tags": [
+    "CNN",
+    "Fashion-MNIST",
+    "Test 88.35%"
+   ],
+   "legacy_file": "docs/ch05_1_fashion_mnist_cnn_training_evaluation(2).html"
+  },
+  {
+   "id": "ch02",
+   "number": 2,
+   "title": "CNN 필터와 특징맵 시각화",
+   "nav_title": "필터·특징맵 시각화",
+   "subtitle": "Checkpoint 복원 → Conv1 필터 → 계층별 특징맵 → ReLU·Pooling 전후 → 정답·오답 비교",
+   "slug": "ch02_cnn_filter_feature_map_visualization",
+   "version": "v01",
+   "source": "content/cnn/ch02.html",
+   "base": "docs",
+   "tags": [
+    "Conv 필터",
+    "특징맵",
+    "시각화"
+   ],
+   "legacy_file": "docs/ch05_2_cnn_filter_feature_map_visualization.html"
+  }
+ ]
+}

@@ -1,0 +1,573 @@
+/*
+ * 교육용 HTML 공통 스타일 — 유지보수용 원본 (STANDARD 10.3)
+ * 기준: rule_md d1b8278d · web/education-html/STANDARD.md
+ * 이관 원본(압축본)과 규칙·선언이 같음을 확인함: 정리 전후 PostCSS 규칙 315항목 일치.
+ * 장별 추가 스타일은 tools/guide/build_guides.py 의 <style>에서 관리한다.
+ */
+
+/* 1. 색상·폭 변수 — STANDARD 2절 (#F1F2EE 바탕 · #4635B1 강조 · 본문 최대 1180px) */
+:root {
+  --paper: #f1f2ee;
+  --card: #fff;
+  --ink: #15171c;
+  --ink-2: #4a4f5a;
+  --ink-3: #676d78; /* 보조 글자: 바탕 #F1F2EE 대비 4.63:1 (WCAG AA 4.5:1, 이관 원본 #858b96은 3.0:1) */
+  --line: #dddfd8;
+  --accent: #4635b1;
+  --soft: #edeafa;
+  --yellow: #ffd24a;
+  --maxw: 1180px;
+}
+
+/* 2. 기본 요소 — 글꼴(IBM Plex Sans KR/Mono)·링크·키보드 초점 표시(노란 외곽선) */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font:
+    400 15px/1.75 "IBM Plex Sans KR",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+a {
+  color: var(--accent);
+}
+a:focus-visible,
+button:focus-visible,
+pre:focus-visible,
+.table-wrap:focus-visible,
+.figure-wrap:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+pre,
+code {
+  font-family: "IBM Plex Mono", monospace;
+}
+code {
+  font-size: 0.86em;
+  border-radius: 2px;
+  background: #f4f4f1;
+  padding: 2px 5px;
+}
+pre code {
+  font-size: inherit;
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/* 3. 상단 배너 — 책장 사진(hero-bookshelf.jpg 1800×380) 위 어두운 그라데이션, 높이 160~220px */
+.hero {
+  position: relative;
+  background: #15171c;
+  color: white;
+  overflow: hidden;
+  border-bottom: 1px solid #181b25;
+}
+.hero:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(12, 17, 27, 0.89),
+      rgba(12, 17, 27, 0.69) 58%,
+      rgba(12, 17, 27, 0.48)
+    ),
+    url("hero-bookshelf.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.hero-inner {
+  position: relative;
+  max-width: var(--maxw);
+  margin: auto;
+  padding: 36px 32px 38px;
+}
+.kicker {
+  display: inline-block;
+  margin: 0 0 8px;
+  color: var(--yellow);
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--yellow);
+  letter-spacing: 0.05em;
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.85rem, 3.7vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.hero p {
+  color: #d6d9df;
+  max-width: 780px;
+  font-size: 0.98rem;
+  margin: 12px 0 0;
+}
+.hero strong {
+  color: var(--yellow);
+}
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.chip {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f3f3f3;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+
+/* 4. 2단 배치와 좌측 탐색 — 장 목록·현재 페이지 목차 (site.js가 내용을 채움) */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 30px;
+  padding: 0 26px 80px;
+  align-items: start;
+}
+.toc {
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  max-height: 100vh;
+  padding: 28px 0;
+}
+/* 4.1 좌측 탐색 구성 (STANDARD 4.1, 기준 ai-agent-engineering)
+   과정 머리글 → 전체 학습 안내서 → 접이식 전체 장 바로가기 → 현재 쪽 세부 목차 */
+.toc ul,
+.toc ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink-2);
+  font-size: 0.8rem;
+  border-left: 3px solid transparent;
+  padding: 7px 9px;
+  line-height: 1.4;
+}
+.toc a:hover {
+  color: var(--accent);
+  background: #efedf9;
+}
+.course-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 9px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #59566d;
+  letter-spacing: 0.02em;
+}
+.course-nav-header span:last-child {
+  white-space: nowrap;
+}
+.toc .course-nav-home {
+  color: var(--accent);
+  background: var(--soft);
+  border-left-color: var(--accent);
+  padding: 9px 10px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.course-chapters {
+  margin: 0 0 15px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+.course-chapters summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #242535;
+  background: #f1f0f9;
+  border: 1px solid #e2dff0;
+}
+.course-chapters summary::-webkit-details-marker {
+  display: none;
+}
+.course-chapters summary::after {
+  content: "⌄";
+  color: var(--accent);
+}
+.course-chapters[open] summary::after {
+  content: "⌃";
+}
+.course-ch-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 5px 0;
+}
+.toc .course-ch-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 0.77rem;
+  line-height: 1.35;
+  padding: 7px 9px;
+  color: #4c4d5d;
+}
+.toc .course-ch-link[aria-current="page"] {
+  background: #e9e5fa;
+  color: #322384;
+  font-weight: 700;
+  border-left-color: var(--accent);
+}
+.course-ch-num,
+.toc .n {
+  font: 600 0.74rem "IBM Plex Mono", monospace;
+  color: #7962bd;
+  min-width: 34px;
+  flex: none;
+}
+.course-toc-heading {
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: #777985;
+  letter-spacing: 0.02em;
+  margin: 9px 0 6px;
+}
+.toc .toc-sections a {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.79rem;
+}
+.toc .toc-sections a.active {
+  color: var(--accent);
+  background: #f1effb;
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+/* 5. 본문 절 — 절 번호(.num)·표·목록 */
+.content {
+  min-width: 0;
+  padding-top: 28px;
+}
+.section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 28px 32px;
+  margin: 0 0 16px;
+  scroll-margin-top: 20px;
+}
+.section h2 {
+  font-size: 1.35rem;
+  margin: 0 0 13px;
+  line-height: 1.45;
+}
+.section h3 {
+  font-size: 1.07rem;
+  margin: 24px 0 9px;
+}
+.section p {
+  color: var(--ink-2);
+  margin: 12px 0;
+}
+.section ul,
+.section ol {
+  padding-left: 24px;
+  color: var(--ink-2);
+}
+.section li {
+  margin: 5px 0;
+}
+.section strong {
+  color: var(--ink);
+}
+.section .num {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 1px 8px;
+  border-radius: 2px;
+  background: var(--soft);
+  color: var(--accent);
+  font:
+    600 0.8rem "IBM Plex Mono",
+    monospace;
+}
+.section table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 17px 0;
+  font-size: 0.88rem;
+}
+.section th,
+.section td {
+  padding: 9px 11px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.section th {
+  background: #f5f5f2;
+}
+
+/* 6. 코드 박스 — 제목 줄(파일·언어·상태) + 복사 버튼(site.js) + 소스 */
+.codeblock {
+  position: relative;
+  border: 1px solid var(--line);
+  margin: 18px 0;
+  background: #fbfbf9;
+}
+.codebar {
+  background: #f2f2ef;
+  border-bottom: 1px solid var(--line);
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-size: 0.73rem;
+}
+.codebar button {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 3px;
+  color: var(--ink-2);
+  padding: 1px 9px;
+}
+.codeblock pre {
+  margin: 0;
+  padding: 15px;
+  overflow: auto;
+  line-height: 1.7;
+  font-size: 0.81rem;
+}
+
+/* 7. 안내 상자·단계 흐름·장 카드 (INDEX) */
+.note {
+  margin: 17px 0;
+  background: var(--soft);
+  border-left: 3px solid var(--accent);
+  padding: 13px 16px;
+  color: #332c70;
+}
+.flow {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+.flow .step {
+  background: #f6f6f3;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 11px 14px;
+}
+.flow .down {
+  text-align: center;
+  color: var(--accent);
+}
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.chapter-card {
+  border: 1px solid var(--line);
+  padding: 16px;
+  background: #fbfbf9;
+  text-decoration: none;
+  color: var(--ink);
+}
+.chapter-card:hover {
+  border-color: var(--accent);
+  background: var(--soft);
+}
+.chapter-card b {
+  display: block;
+  font-size: 1rem;
+}
+.chapter-card span {
+  display: block;
+  font-size: 0.79rem;
+  color: var(--ink-3);
+}
+
+/* 8. 이전/다음 장 링크·모바일 메뉴 버튼·덮개·바닥글 */
+.chapter-links {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 16px 0 35px;
+}
+.chapter-links a {
+  display: inline-block;
+  border: 1px solid var(--line);
+  background: #fff;
+  text-decoration: none;
+  padding: 9px 15px;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1002;
+  background: #191a23;
+  border: 1px solid #555;
+  color: white;
+  padding: 7px 13px;
+  border-radius: 4px;
+}
+.shade {
+  display: none;
+}
+.footer {
+  max-width: var(--maxw);
+  margin: auto;
+  padding: 0 26px 45px;
+  font-size: 0.77rem;
+  color: var(--ink-3);
+}
+
+/* 9. 모바일 (860px 이하) — 좌측 탐색을 서랍 메뉴로 전환 */
+@media (max-width: 860px) {
+  .mobile-menu {
+    display: block;
+  }
+  .wrap {
+    display: block;
+    padding: 0 16px 48px;
+  }
+  .toc {
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(84vw, 300px);
+    max-height: none;
+    background: #fff;
+    padding: 66px 18px 22px;
+    transform: translateX(-105%);
+    transition: transform 0.2s;
+    box-shadow: 3px 0 20px #0003;
+  }
+  .toc.open {
+    transform: translateX(0);
+  }
+  .shade.open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: #0009;
+    z-index: 1000;
+  }
+  .hero-inner {
+    padding: 48px 22px 31px 76px;
+  }
+  .section {
+    padding: 22px 18px;
+  }
+  .chapter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 10. 움직임 줄이기 설정 존중 — STANDARD 10.4 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .toc {
+    transition: none;
+  }
+}
+
+/* 11. 인쇄 — STANDARD 10.2: 핵심 내용과 코드가 잘리지 않게
+ *  - 좌측 탐색·모바일 메뉴·이전/다음·복사 버튼 숨김, 본문 전체 폭
+ *  - 배경 인쇄가 꺼져도 읽히도록 상단 배너를 흰 바탕·검은 글자로
+ *  - 코드 박스 최대 높이·가로 스크롤 해제(줄바꿈), 표·도면 최소 폭 해제 */
+@media print {
+  .toc,
+  .mobile-menu,
+  .shade,
+  .access-skip,
+  .chapter-links,
+  .codebar button {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  .hero {
+    background: none;
+    color: var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .hero:before {
+    display: none;
+  }
+  .hero p,
+  .hero .kicker {
+    color: var(--ink-2);
+  }
+  .wrap {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+  .content {
+    padding-top: 12px;
+  }
+  .section {
+    border: 0;
+    padding: 12px 0;
+  }
+  .section h2,
+  .section h3 {
+    break-after: avoid;
+  }
+  .codeblock pre {
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere;
+  }
+  .table-wrap,
+  .figure-wrap {
+    overflow: visible !important;
+  }
+  .table-wrap > table,
+  .figure-wrap svg {
+    min-width: 0 !important;
+  }
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
